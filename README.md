@@ -7,11 +7,6 @@ Raspberry Pi Configuration
 - Set hostname
 - Enable SSH
 
-## Install system utilities (root)
-    export DEBIAN_FRONTEND=noninteractive
-    /usr/bin/apt-get --quiet update
-    /usr/bin/apt-get --quiet --yes --no-install-recommends install htop zip
-
 ## Configure WiFi (root)
     pushd /etc/wpa_supplicant/
     [ -f wpa_supplicant.conf.DEFAULT ] || /bin/cp wpa_supplicant.conf wpa_supplicant.conf.DEFAULT
