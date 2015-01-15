@@ -7,12 +7,6 @@ Raspberry Pi Configuration
 - Set hostname
 - Enable SSH
 
-## Configure WiFi (root)
-    pushd /etc/wpa_supplicant/
-    [ -f wpa_supplicant.conf.DEFAULT ] || /bin/cp wpa_supplicant.conf wpa_supplicant.conf.DEFAULT
-    /usr/bin/wpa_passphrase '<SSID>' '<password>' >> wpa_supplicant.conf
-    popd
-
 ## Configure Bluetooth (root)
     export DEBIAN_FRONTEND=noninteractive
     /usr/bin/apt-get --quiet update

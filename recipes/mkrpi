@@ -6,11 +6,15 @@ set -e
 basedir="`dirname $0`/.."
 run_on="$1"
 ssh_key="$2"
+ssid="$3"
+password="$4"
 
-if [ -z "$run_on" -o -z "$ssh_key" ]; then
-  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key]"
+if [ -z "$run_on" -o -z "$ssh_key" -o -z "$ssid" -o -z "$password" ]; then
+  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [ssid] [password]"
   exit 1
 else
+  shift
+  shift
   shift
   shift
 fi
@@ -19,3 +23,5 @@ public_key_data=`overcast key get "$ssh_key" --public-data`
 overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$public_key_data\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip\"" "$@"
+
+overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "SSID=\"$ssid\" PASSWORD=\"$password\"" "$@"
