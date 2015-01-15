@@ -4,7 +4,7 @@ set -e
 # set -x
 
 if [ -z "$PUBLIC_KEY" ]; then
-  echo "Usage: scripts/authorize_key --env \"PUBLIC_KEY=[public-key-data]\""
+  echo "Usage: scripts/authorize-key --env \"PUBLIC_KEY=[public-key-data]\""
   exit 1
 fi
 

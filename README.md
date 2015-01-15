@@ -7,13 +7,6 @@ Raspberry Pi Configuration
 - Set hostname
 - Enable SSH
 
-## Install SSH key (pi)
-    pushd ~/
-    /bin/mkdir --parents .ssh
-    echo '<public key>' >> .ssh/authorized_keys
-    /bin/chmod --recursive go-rwx .ssh
-    popd
-
 ## Install system utilities (root)
     export DEBIAN_FRONTEND=noninteractive
     /usr/bin/apt-get --quiet update
