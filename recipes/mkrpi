@@ -8,11 +8,15 @@ run_on="$1"
 ssh_key="$2"
 ssid="$3"
 password="$4"
+noip_username="$5"
+noip_password="$6"
 
-if [ -z "$run_on" -o -z "$ssh_key" -o -z "$ssid" -o -z "$password" ]; then
-  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [ssid] [password]"
+if [ -z "$run_on" -o -z "$ssh_key" -o -z "$ssid" -o -z "$password" -o -z "$noip_username" -o -z "$noip_password" ]; then
+  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [ssid] [password] [noip-username] [noip-password]"
   exit 1
 else
+  shift
+  shift
   shift
   shift
   shift
@@ -27,3 +31,5 @@ overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop
 overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "SSID=\"$ssid\" PASSWORD=\"$password\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/configure-collectd" "$@"
+
+overcast run "$run_on" "$basedir/scripts/configure-noip-client" --env "NOIP_USERNAME=\"$noip_username\" NOIP_PASSWORD=\"$noip_password\"" "$@"

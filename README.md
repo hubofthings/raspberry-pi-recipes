@@ -41,20 +41,6 @@ Raspberry Pi Configuration
 
     /etc/init.d/collectd restart
 
-## Install No-IP Dynamic Update Client (root)
-    pushd /usr/local/src/
-    /usr/bin/wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
-    /bin/tar zxvf noip-duc-linux.tar.gz
-    cd noip-2.1.9-1/
-    /usr/bin/make
-    /usr/bin/make install
-    popd
-
-    /bin/cat <<\EOF> /etc/cron.d/noip2
-    # m h dom mon dow user command
-    @reboot root /usr/local/bin/noip2
-    EOF
-
 ## Move `pi` home directory to USB drive (root)
     /sbin/mkfs.ext4 /dev/sda1
     /bin/mkdir --parents /mnt/usb/
