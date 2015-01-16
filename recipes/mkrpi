@@ -22,6 +22,8 @@ fi
 public_key_data=`overcast key get "$ssh_key" --public-data`
 overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$public_key_data\"" "$@"
 
-overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip\"" "$@"
+overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "SSID=\"$ssid\" PASSWORD=\"$password\"" "$@"
+
+overcast run "$run_on" "$basedir/scripts/configure-collectd" "$@"

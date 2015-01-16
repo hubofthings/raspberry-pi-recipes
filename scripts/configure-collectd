@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+pushd /etc/collectd/
+
+[ -f collectd.conf.DEFAULT ] || /usr/bin/sudo /bin/cp collectd.conf collectd.conf.DEFAULT
+
+/usr/bin/sudo /bin/sed --in-place \
+  --expression='s/^LoadPlugin rrdtool$/#LoadPlugin rrdtool/' \
+  --expression='s/^#Interval 10$/Interval 60/' \
+  /etc/collectd/collectd.conf
+
+/bin/grep --quiet 'Include "/etc/collectd\.d/\*\.conf"' collectd.conf || /usr/bin/sudo /usr/bin/tee collectd.conf <<\EOF
+Include "/etc/collectd.d/*.conf"
+EOF
+
+popd
+
+[ -d /etc/collectd.d/ ] || /usr/bin/sudo /bin/mkdir /etc/collectd.d/
+
+pushd /etc/collectd.d/
+
+/usr/bin/sudo /usr/bin/tee ping.conf <<\EOF
+LoadPlugin ping
+<Plugin ping>
+    Host "10.0.1.1"
+    Host "google.com"
+</Plugin>
+EOF
+
+popd
+
+/usr/bin/sudo /etc/init.d/collectd restart
+/usr/bin/sudo /bin/rm --force --recursive /var/lib/collectd/rrd/

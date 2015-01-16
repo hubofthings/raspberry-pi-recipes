@@ -12,34 +12,6 @@ Raspberry Pi Configuration
     /usr/bin/apt-get --quiet update
     /usr/bin/apt-get --quiet --yes --no-install-recommends install bluez    
     
-## Install Collectd (root)
-    export DEBIAN_FRONTEND=noninteractive
-    /usr/bin/apt-get --quiet update
-    /usr/bin/apt-get --quiet --yes --no-install-recommends install collectd liboping0
-
-    pushd /etc/collectd/
-    [ -f collectd.conf.DEFAULT ] || /bin/cp collectd.conf collectd.conf.DEFAULT
-    /bin/sed --in-place 's/^LoadPlugin rrdtool$/#LoadPlugin rrdtool/' /etc/collectd/collectd.conf
-    /bin/sed --in-place 's/^#Interval 10$/Interval 60/' /etc/collectd/collectd.conf
-    /bin/cat <<\EOF>> collectd.conf
-    Include "/etc/collectd.d/*.conf"
-    EOF
-    popd
-
-    [ -d /etc/collectd.d/ ] || /bin/mkdir /etc/collectd.d/
-    pushd /etc/collectd.d/
-    /bin/cat <<\EOF> ping.conf
-    LoadPlugin ping
-    <Plugin ping>
-        Host "10.0.1.1"
-        Host "google.com"
-    </Plugin>
-    EOF
-    popd
-
-    /etc/init.d/collectd restart
-    /bin/rm --force --recursive /var/lib/collectd/rrd/
-
 ## Install Collectd Librato plugin (root)
     pushd /usr/local/src/
     /usr/bin/git clone git://github.com/librato/collectd-librato.git
