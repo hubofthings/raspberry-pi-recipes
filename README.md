@@ -12,35 +12,6 @@ Raspberry Pi Configuration
     /usr/bin/apt-get --quiet update
     /usr/bin/apt-get --quiet --yes --no-install-recommends install bluez    
     
-## Install Collectd Librato plugin (root)
-    pushd /usr/local/src/
-    /usr/bin/git clone git://github.com/librato/collectd-librato.git
-    cd collectd-librato/
-    /usr/bin/make install
-    popd
-
-    pushd /etc/collectd.d/
-    /bin/cat <<\EOF> librato.conf
-    <LoadPlugin "python">
-        Globals true
-    </LoadPlugin>
-    <Plugin "python">
-        # collectd-librato.py is at /opt/collectd-librato-0.0.10/lib/collectd-librato.py
-        ModulePath "/opt/collectd-librato-0.0.10/lib"
-        Import "collectd-librato"
-        <Module "collectd-librato">
-            Email "<email>"
-            APIToken "<token>"
-            LowercaseMetricNames true
-            MetricPrefix ""
-            IncludeRegex "^cpu\\..+$,^df\\.mnt.+$,^df\\.root\\..+$,^memory\\.memory\\..+$,^ping\\.ping_droprate\\..+$,^swap\\.swap\\..+$"
-        </Module>
-    </Plugin>
-    EOF
-    popd
-
-    /etc/init.d/collectd restart
-
 ## Move `pi` home directory to USB drive (root)
     /sbin/mkfs.ext4 /dev/sda1
     /bin/mkdir --parents /mnt/usb/

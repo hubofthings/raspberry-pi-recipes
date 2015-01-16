@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+if [ -z "$LIBRATO_USERNAME" -o -z "$LIBRATO_PASSWORD" ]; then
+  echo "Usage: scripts/configure-collectd-librato --env \"LIBRATO_USERNAME=[username] LIBRATO_PASSWORD=[password]\""
+  exit 1
+fi
+
+pushd /etc/collectd.d/
+
+/usr/bin/sudo /usr/bin/tee librato.conf <<EOF
+LoadPlugin write_http
+<Plugin write_http>
+  <URL "https://collectd.librato.com/v1/measurements">
+    User "$LIBRATO_USERNAME"
+    Password "$LIBRATO_PASSWORD"
+    Format "JSON"
+  </URL>
+</Plugin>
+EOF
+
+popd
+
+/usr/bin/sudo /etc/init.d/collectd restart

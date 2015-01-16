@@ -10,11 +10,15 @@ ssid="$3"
 password="$4"
 noip_username="$5"
 noip_password="$6"
+librato_username="$7"
+librato_password="$8"
 
-if [ -z "$run_on" -o -z "$ssh_key" -o -z "$ssid" -o -z "$password" -o -z "$noip_username" -o -z "$noip_password" ]; then
-  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [ssid] [password] [noip-username] [noip-password]"
+if [ -z "$run_on" -o -z "$ssh_key" -o -z "$ssid" -o -z "$password" -o -z "$noip_username" -o -z "$noip_password" -o -z "$librato_username" -o -z "$librato_password" ]; then
+  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [ssid] [password] [noip-username] [noip-password] [librato-username] [librato-password]"
   exit 1
 else
+  shift
+  shift
   shift
   shift
   shift
@@ -33,3 +37,5 @@ overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "SSID=\"$ssid\" P
 overcast run "$run_on" "$basedir/scripts/configure-collectd" "$@"
 
 overcast run "$run_on" "$basedir/scripts/configure-noip-client" --env "NOIP_USERNAME=\"$noip_username\" NOIP_PASSWORD=\"$noip_password\"" "$@"
+
+overcast run "$run_on" "$basedir/scripts/configure-collectd-librato" --env "LIBRATO_USERNAME=\"$librato_username\" LIBRATO_PASSWORD=\"$librato_password\"" "$@"
