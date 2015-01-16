@@ -6,15 +6,15 @@ set -e
 basedir="`dirname $0`/.."
 run_on="$1"
 ssh_key="$2"
-ssid="$3"
-password="$4"
+wifi_ssid="$3"
+wifi_password="$4"
 noip_username="$5"
 noip_password="$6"
 librato_username="$7"
 librato_password="$8"
 
-if [ -z "$run_on" -o -z "$ssh_key" -o -z "$ssid" -o -z "$password" -o -z "$noip_username" -o -z "$noip_password" -o -z "$librato_username" -o -z "$librato_password" ]; then
-  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [ssid] [password] [noip-username] [noip-password] [librato-username] [librato-password]"
+if [ -z "$run_on" -o -z "$ssh_key" -o -z "$wifi_ssid" -o -z "$wifi_password" -o -z "$noip_username" -o -z "$noip_password" -o -z "$librato_username" -o -z "$librato_password" ]; then
+  echo "Usage: recipes/mkrpi [instance|cluster|all] [ssh-key] [wifi-ssid] [wifi-password] [noip-username] [noip-password] [librato-username] [librato-password]"
   exit 1
 else
   shift
@@ -32,7 +32,7 @@ overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$pub
 
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0\"" "$@"
 
-overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "SSID=\"$ssid\" PASSWORD=\"$password\"" "$@"
+overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "WIFI_SSID=\"$wifi_ssid\" WIFI_PASSWORD=\"$wifi_password\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/configure-collectd" "$@"
 

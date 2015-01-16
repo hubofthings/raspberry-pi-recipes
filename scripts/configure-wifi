@@ -3,12 +3,12 @@
 set -e
 # set -x
 
-if [ -z "$SSID" -o -z "$PASSWORD" ]; then
-  echo "Usage: scripts/configure-wifi --env \"SSID=[ssid] PASSWORD=[password]\""
+if [ -z "$WIFI_SSID" -o -z "$WIFI_PASSWORD" ]; then
+  echo "Usage: scripts/configure-wifi --env \"WIFI_SSID=[ssid] WIFI_PASSWORD=[password]\""
   exit 1
 fi
 
 wpa_supplicant="/etc/wpa_supplicant/wpa_supplicant.conf"
 
 [ -f "${wpa_supplicant}.DEFAULT" ] || /usr/bin/sudo /bin/cp --archive "$wpa_supplicant" "${wpa_supplicant}.DEFAULT"
-/usr/bin/wpa_passphrase "$SSID" "$PASSWORD" | /usr/bin/sudo /usr/bin/tee --append "$wpa_supplicant"
+/usr/bin/wpa_passphrase "$WIFI_SSID" "$WIFI_PASSWORD" | /usr/bin/sudo /usr/bin/tee --append "$wpa_supplicant"
