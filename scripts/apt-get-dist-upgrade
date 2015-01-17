@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+export DEBIAN_FRONTEND=noninteractive
+/usr/bin/sudo /usr/bin/apt-get --quiet update
+/usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends --purge dist-upgrade

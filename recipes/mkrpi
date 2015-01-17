@@ -30,6 +30,8 @@ fi
 public_key_data=`overcast key get "$ssh_key" --public-data`
 overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$public_key_data\"" "$@"
 
+overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
+
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "WIFI_SSID=\"$wifi_ssid\" WIFI_PASSWORD=\"$wifi_password\"" "$@"
