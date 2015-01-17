@@ -41,3 +41,5 @@ overcast run "$run_on" "$basedir/scripts/configure-noip-client" --env "NOIP_USER
 overcast run "$run_on" "$basedir/scripts/configure-collectd-librato" --env "LIBRATO_USERNAME=\"$librato_username\" LIBRATO_PASSWORD=\"$librato_password\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/install-godaddy-c2-ca-root-cert-g2" "$@"
+
+overcast run "$run_on" "sudo usermod --lock pi" "$@"

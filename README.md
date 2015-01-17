@@ -2,7 +2,6 @@ Raspberry Pi Configuration
 ==========================
 
 ## `raspi-config` (root)
-- Change `pi` user password
 - Set time zone
 - Set hostname
 - Enable SSH
