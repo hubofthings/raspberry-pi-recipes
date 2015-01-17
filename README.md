@@ -35,11 +35,3 @@ Raspberry Pi Configuration
     export DEBIAN_FRONTEND=noninteractive
     /usr/bin/apt-get --quiet update
     /usr/bin/apt-get --quiet --yes --no-install-recommends install oracle-java7-jdk
-
-## Install JDK7 GoDaddy Class 2 Certification Authority Root Certificate - G2 (root)
-    /usr/bin/wget --output-document=/tmp/gdroot-g2.crt 'https://certs.godaddy.com/anonymous/repository.pki?streamfilename=gdroot-g2.crt&actionMethod=anonymous%2Frepository.xhtml%3Arepository.streamFile%28%27%27%29&cid=849433'
-
-    pushd /usr/lib/jvm/jdk-7-oracle-armhf/jre/lib/security/
-    [ -f cacerts.DEFAULT ] || /bin/cp cacerts cacerts.DEFAULT
-    /usr/bin/keytool -import -noprompt -file /tmp/gdroot-g2.crt -alias gdroot-g2 -trustcacerts -keystore cacerts -storepass changeit
-    popd

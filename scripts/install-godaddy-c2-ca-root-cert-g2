@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+cacerts=/usr/lib/jvm/jdk-7-oracle-armhf/jre/lib/security/cacerts
+
+/usr/bin/keytool -list -alias gdroot-g2 -keystore "$cacerts" -storepass changeit && exit 0
+
+pushd /tmp/
+
+/bin/rm --force gdroot-g2.crt*
+/usr/bin/wget --quiet 'https://certs.godaddy.com/repository/gdroot-g2.crt'
+
+[ -f "${cacerts}.DEFAULT" ] || /usr/bin/sudo /bin/cp "$cacerts" "${cacerts}.DEFAULT"
+/usr/bin/sudo /usr/bin/keytool -import -noprompt -file gdroot-g2.crt -alias gdroot-g2 -trustcacerts -keystore "$cacerts" -storepass changeit
+
+popd
