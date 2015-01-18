@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+basedir="`dirname $0`/.."
+run_on="$1"
+config="$2"
+
+if [ -z "$run_on" -o -z "$config" -o ! -f "$config" ]; then
+  echo "Usage: recipes/mkpi [instance|cluster|all] [config]"
+  exit 1
+else
+  shift
+  shift
+fi
+
+source "$config"
+
+overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
+
+overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0\"" "$@"
+
+overcast run "$run_on" "$basedir/scripts/install-godaddy-c2-ca-root-cert-g2" "$@"
+
+overcast run "$run_on" "$basedir/scripts/configure-collectd" "$@"
+
+if [ -n "$LIBRATO_USERNAME" -a -n "$LIBRATO_PASSWORD" ]; then
+  overcast run "$run_on" "$basedir/scripts/configure-collectd-librato" --env "LIBRATO_USERNAME=\"$LIBRATO_USERNAME\" LIBRATO_PASSWORD=\"$LIBRATO_PASSWORD\"" "$@"
+fi
+
+if [ -n "$NOIP_USERNAME" -a -n "$NOIP_PASSWORD" ]; then
+  overcast run "$run_on" "$basedir/scripts/configure-noip-client" --env "NOIP_USERNAME=\"$NOIP_USERNAME\" NOIP_PASSWORD=\"$NOIP_PASSWORD\"" "$@"
+fi
+
+if [ -n "$WIFI_SSID" -a -n "$WIFI_PASSWORD" ]; then
+  overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "WIFI_SSID=\"$WIFI_SSID\" WIFI_PASSWORD=\"$WIFI_PASSWORD\"" "$@"
+fi
+
+if [ -n "$PUBLIC_KEY" ]; then
+  overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$PUBLIC_KEY\"" "$@"
+fi
+
+if [ -n "$LOCK_PI" ]; then
+  overcast run "$run_on" "sudo usermod --lock pi" "$@"
+fi
