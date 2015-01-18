@@ -12,3 +12,5 @@ wpa_supplicant="/etc/wpa_supplicant/wpa_supplicant.conf"
 
 [ -f "${wpa_supplicant}.DEFAULT" ] || /usr/bin/sudo /bin/cp --archive "$wpa_supplicant" "${wpa_supplicant}.DEFAULT"
 /usr/bin/wpa_passphrase "$WIFI_SSID" "$WIFI_PASSWORD" | /usr/bin/sudo /usr/bin/tee --append "$wpa_supplicant"
+
+/usr/bin/sudo /usr/bin/killall -HUP wpa_supplicant || true
