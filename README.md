@@ -6,6 +6,8 @@ Raspberry Pi Configuration
 - Set hostname
 - Enable SSH
 
+## `./recipes/mkpi [instance|cluster|all] [config]`
+
 ## Configure Bluetooth (root)
     export DEBIAN_FRONTEND=noninteractive
     /usr/bin/apt-get --quiet update
