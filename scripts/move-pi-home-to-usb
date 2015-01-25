@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+/usr/bin/sudo /bin/mkdir --parents /mnt/usb/
+
+pushd /etc/
+
+[ -f fstab.DEFAULT ] || /usr/bin/sudo /bin/cp fstab fstab.DEFAULT
+
+/bin/grep --quiet '/mnt/usb' fstab || /usr/bin/sudo /usr/bin/tee --append fstab <<\EOF
+/dev/sda1 /mnt/usb ext4 defaults,noatime 0 2
+EOF
+
+popd
+
+/usr/bin/sudo /usr/bin/tee /etc/cron.d/pi <<\EOF
+# m h dom mon dow user command
+@reboot root /usr/sbin/usermod --home /mnt/usb/pi pi && /bin/rm --force /etc/cron.d/pi
+EOF
+
+/usr/bin/sudo /sbin/reboot
