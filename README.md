@@ -6,6 +6,8 @@ Raspberry Pi Configuration
 - Set hostname
 - Enable SSH
 
+## `npm --global install overcast`
+
 ## `./recipes/mkpi [instance|cluster|all] [config]`
 
 ## Configure Bluetooth (root)
