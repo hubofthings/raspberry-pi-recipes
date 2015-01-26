@@ -13,9 +13,9 @@ authorized_keys="$sshdir/authorized_keys"
 
 pushd ~/
 
-mkdir --parents "$sshdir"
-echo "${PUBLIC_KEY}" >> "$authorized_keys"
-sort --unique "--output=$authorized_keys" "$authorized_keys"
-chmod --recursive go-rwx "$sshdir"
+/bin/mkdir --parents "$sshdir"
+/bin/echo "${PUBLIC_KEY}" >> "$authorized_keys"
+/usr/bin/sort --unique "--output=$authorized_keys" "$authorized_keys"
+/bin/chmod --recursive go-rwx "$sshdir"
 
 popd
