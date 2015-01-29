@@ -41,6 +41,11 @@ if [ -n "$PUBLIC_KEY" ]; then
   overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$PUBLIC_KEY\"" "$@"
 fi
 
+if [ -n "$INSTALL_BLUEZ" ]; then
+  overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev\"" "$@"
+  overcast run "$run_on" "$basedir/scripts/install-bluez-5" "$@"
+fi
+
 if [ -n "$LOCK_PI" ]; then
   overcast run "$run_on" "sudo usermod --lock pi" "$@"
 fi
