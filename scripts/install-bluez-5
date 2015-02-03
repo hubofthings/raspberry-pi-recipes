@@ -5,12 +5,12 @@ set -e
 
 pushd /usr/local/src
 
-BLUEZ_VERSION="5.27"
+BLUEZ_VERSION="5.28"
 
-/usr/bin/sudo /usr/bin/wget --quiet 'http://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.xz'
-/usr/bin/sudo /bin/tar xf bluez-${BLUEZ_VERSION}.tar.xz
+/usr/bin/sudo /usr/bin/wget --quiet "http://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.xz"
+/usr/bin/sudo /bin/tar xf "bluez-${BLUEZ_VERSION}.tar.xz"
 
-pushd bluez-${BLUEZ_VERSION}
+pushd "bluez-${BLUEZ_VERSION}"
 
 /usr/bin/sudo ./configure --disable-systemd
 /usr/bin/sudo /usr/bin/make
