@@ -12,6 +12,7 @@ NOIP_PASSWORD=
 WIFI_SSID=
 WIFI_PASSWORD=
 
+# Path to public key
 PUBLIC_KEY=
 
 LOCK_PI=

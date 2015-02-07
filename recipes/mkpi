@@ -38,7 +38,7 @@ if [ -n "$WIFI_SSID" -a -n "$WIFI_PASSWORD" ]; then
 fi
 
 if [ -n "$PUBLIC_KEY" ]; then
-  overcast run "$run_on" "$basedir/scripts/authorize-key" --env "PUBLIC_KEY=\"$PUBLIC_KEY\"" "$@"
+  overcast key push "$run_on" "$PUBLIC_KEY" --append "$@"
 fi
 
 if [ -n "$INSTALL_BLUEZ" ]; then
