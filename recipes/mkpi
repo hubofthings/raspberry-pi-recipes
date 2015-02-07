@@ -19,7 +19,7 @@ source "$config"
 
 overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
 
-overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0\"" "$@"
+overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0 $PACKAGES\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/install-godaddy-c2-ca-root-cert-g2" "$@"
 
@@ -42,7 +42,6 @@ if [ "$PUBLIC_KEY" = "yes" ]; then
 fi
 
 if [ "$BLUEZ" = "yes" ]; then
-  overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev\"" "$@"
   overcast run "$run_on" "$basedir/scripts/install-bluez-5" --env "BLUEZ_VERSION=\"$BLUEZ_VERSION\"" "$@"
 fi
 

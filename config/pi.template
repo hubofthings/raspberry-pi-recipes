@@ -27,4 +27,6 @@ LOCK_PI=
 
 # if "yes", install BlueZ
 BLUEZ=
-BLUEZ_VERSION=
+BLUEZ_VERSION='5.28'
+# Additional packages required by BlueZ
+PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
