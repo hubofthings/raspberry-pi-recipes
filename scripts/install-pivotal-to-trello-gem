@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+export DEBIAN_FRONTEND=noninteractive
+/usr/bin/sudo /usr/bin/apt-get --quiet update
+/usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install ruby1.9.1-dev libxml2-dev
+
+/usr/bin/gem install rest-client --user-install --no-rdoc --no-ri --version 1.6.0
+/usr/bin/gem install rest-client --user-install --no-rdoc --no-ri --version 1.7.2
+/usr/bin/gem install pivotal-to-trello --user-install --no-rdoc --no-ri
+
+# TODO update PATH to include `$HOME/.gem/ruby/1.9.1/bin`
