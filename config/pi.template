@@ -3,18 +3,27 @@
 set -e
 # set -x
 
+# if "yes", configure Collectd to push metrics to Librato
+LIBRATO=
 LIBRATO_USERNAME=
 LIBRATO_PASSWORD=
 
+# if "yes", install and configure NoIP Dynamic DNS Update Client
+NOIP=
 NOIP_USERNAME=
 NOIP_PASSWORD=
 
+# if "yes", configure WPA supplicant to connect to SSID below
+WIFI=
 WIFI_SSID=
 WIFI_PASSWORD=
 
-# Path to public key
+# if "yes", add public key below to `pi` user `authorized_keys`
 PUBLIC_KEY=
+PUBLIC_KEY_FILE=
 
+# if "yes", disable password-based logins to `pi` user
 LOCK_PI=
 
-INSTALL_BLUEZ=
+# if "yes", install BlueZ
+BLUEZ5=
