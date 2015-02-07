@@ -41,9 +41,9 @@ if [ "$PUBLIC_KEY" = "yes" ]; then
   overcast key push "$run_on" "$PUBLIC_KEY_FILE" --append "$@"
 fi
 
-if [ "$BLUEZ5" = "yes" ]; then
+if [ "$BLUEZ" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev\"" "$@"
-  overcast run "$run_on" "$basedir/scripts/install-bluez-5" "$@"
+  overcast run "$run_on" "$basedir/scripts/install-bluez-5" --env "BLUEZ_VERSION=\"$BLUEZ_VERSION\"" "$@"
 fi
 
 if [ "$LOCK_PI" = "yes" ]; then

@@ -3,9 +3,12 @@
 set -e
 # set -x
 
-pushd /usr/local/src
+if [ -z "$BLUEZ_VERSION" ]; then
+  echo "Usage: scripts/install-bluez-5 --env \"BLUEZ_VERSION=[version]\""
+  exit 1
+fi
 
-BLUEZ_VERSION="5.28"
+pushd /usr/local/src
 
 /usr/bin/sudo /usr/bin/wget --quiet "http://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.xz"
 /usr/bin/sudo /bin/tar xf "bluez-${BLUEZ_VERSION}.tar.xz"

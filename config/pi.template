@@ -26,4 +26,5 @@ PUBLIC_KEY_FILE=
 LOCK_PI=
 
 # if "yes", install BlueZ
-BLUEZ5=
+BLUEZ=
+BLUEZ_VERSION=
