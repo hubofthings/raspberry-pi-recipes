@@ -17,6 +17,10 @@ fi
 
 source "$config"
 
+if [ "$BLUEZ" = "yes" ]; then
+  PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
+fi
+
 overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
 
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0 $PACKAGES\"" "$@"
@@ -45,6 +49,7 @@ if [ "$BLUEZ" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/install-bluez-5" --env "BLUEZ_VERSION=\"$BLUEZ_VERSION\"" "$@"
 fi
 
+# This should remain last to ensure passwordless SSH is available throughout the install process
 if [ "$LOCK_PI" = "yes" ]; then
   overcast run "$run_on" "sudo usermod --lock pi" "$@"
 fi
