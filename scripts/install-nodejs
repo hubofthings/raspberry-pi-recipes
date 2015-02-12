@@ -12,3 +12,5 @@ pushd /tmp/
 /usr/bin/sudo /usr/bin/dpkg --install node_latest_armhf.deb
 
 popd
+
+/usr/bin/sudo /usr/local/bin/npm update --global
