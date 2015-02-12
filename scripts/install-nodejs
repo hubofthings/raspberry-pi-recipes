@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+export DEBIAN_FRONTEND=noninteractive
+
+# https://github.com/nodesource/distributions#deb
+/usr/bin/curl --silent --location 'https://deb.nodesource.com/setup' | /usr/bin/sudo bash -
+/usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs build-essential

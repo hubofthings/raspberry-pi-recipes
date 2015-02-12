@@ -21,6 +21,11 @@ if [ "$BLUEZ" = "yes" ]; then
   PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
 fi
 
+if [ "$NODEJS" = "yes" ]; then
+  # Taken from `PRE_INSTALL_PKGS` in Node.js setup script (https://deb.nodesource.com/setup); avoids extra `apt-get install` when running that script
+  PACKAGES="apt-transport-https lsb-release curl $PACKAGES"
+fi
+
 overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
 
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0 $PACKAGES\"" "$@"
@@ -47,6 +52,10 @@ fi
 
 if [ "$BLUEZ" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/install-bluez-5" --env "BLUEZ_VERSION=\"$BLUEZ_VERSION\"" "$@"
+fi
+
+if [ "$NODEJS" = "yes" ]; then
+  overcast run "$run_on" "$basedir/scripts/install-nodejs" "$@"
 fi
 
 # This should remain last to ensure passwordless SSH is available throughout the install process
