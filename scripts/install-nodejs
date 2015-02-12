@@ -5,6 +5,10 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-# https://github.com/nodesource/distributions#deb
-/usr/bin/curl --silent --location 'https://deb.nodesource.com/setup' | /usr/bin/sudo bash -
-/usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs build-essential
+pushd /tmp/
+
+# http://node-arm.herokuapp.com/
+/usr/bin/wget --quiet 'http://node-arm.herokuapp.com/node_latest_armhf.deb'
+/usr/bin/sudo /usr/bin/dpkg --install node_latest_armhf.deb
+
+popd
