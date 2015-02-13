@@ -8,7 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 pushd /tmp/
 
 # http://node-arm.herokuapp.com/
-/usr/bin/wget --quiet 'http://node-arm.herokuapp.com/node_latest_armhf.deb'
+/usr/bin/curl --location --remote-name --silent 'http://node-arm.herokuapp.com/node_latest_armhf.deb'
 /usr/bin/sudo /usr/bin/dpkg --install node_latest_armhf.deb
 
 popd

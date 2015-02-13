@@ -10,7 +10,7 @@ fi
 
 pushd /usr/local/src/
 
-/usr/bin/sudo /usr/bin/wget --quiet 'http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz'
+/usr/bin/sudo /usr/bin/curl --location --remote-name --silent 'http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz'
 /usr/bin/sudo /bin/tar zxf noip-duc-linux.tar.gz
 
 pushd noip-2.1.9*
