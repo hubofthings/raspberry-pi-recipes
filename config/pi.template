@@ -28,3 +28,6 @@ LOCK_PI=
 # if "yes", install BlueZ
 BLUEZ=
 BLUEZ_VERSION=5.28
+
+# if "yes", install Node.js and NPM
+NODEJS=

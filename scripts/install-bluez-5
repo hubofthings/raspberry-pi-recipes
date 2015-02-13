@@ -10,12 +10,12 @@ fi
 
 pushd /usr/local/src
 
-/usr/bin/sudo /usr/bin/wget --quiet "http://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.xz"
+/usr/bin/sudo /usr/bin/curl --location --remote-name --silent "http://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar.xz"
 /usr/bin/sudo /bin/tar xf "bluez-${BLUEZ_VERSION}.tar.xz"
 
 pushd "bluez-${BLUEZ_VERSION}"
 
-/usr/bin/sudo ./configure --disable-systemd
+/usr/bin/sudo ./configure --disable-systemd --enable-library
 /usr/bin/sudo /usr/bin/make
 /usr/bin/sudo /usr/bin/make install
 

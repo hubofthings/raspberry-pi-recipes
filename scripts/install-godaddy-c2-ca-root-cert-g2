@@ -5,8 +5,7 @@ set -e
 
 pushd /tmp/
 
-/bin/rm --force gdroot-g2.crt*
-/usr/bin/wget --quiet 'https://certs.godaddy.com/repository/gdroot-g2.crt'
+/usr/bin/curl --location --remote-name --silent 'https://certs.godaddy.com/repository/gdroot-g2.crt'
 
 for cacerts in `/usr/bin/find /usr/lib/jvm -type f -name cacerts`; do
   /usr/bin/keytool -list -alias gdroot-g2 -keystore "$cacerts" -storepass changeit && continue

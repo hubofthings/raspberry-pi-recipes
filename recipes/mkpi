@@ -49,6 +49,10 @@ if [ "$BLUEZ" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/install-bluez-5" --env "BLUEZ_VERSION=\"$BLUEZ_VERSION\"" "$@"
 fi
 
+if [ "$NODEJS" = "yes" ]; then
+  overcast run "$run_on" "$basedir/scripts/install-nodejs" "$@"
+fi
+
 # This should remain last to ensure passwordless SSH is available throughout the install process
 if [ "$LOCK_PI" = "yes" ]; then
   overcast run "$run_on" "sudo usermod --lock pi" "$@"
