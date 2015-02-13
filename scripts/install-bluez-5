@@ -15,7 +15,7 @@ pushd /usr/local/src
 
 pushd "bluez-${BLUEZ_VERSION}"
 
-/usr/bin/sudo ./configure --disable-systemd
+/usr/bin/sudo ./configure --disable-systemd --enable-library
 /usr/bin/sudo /usr/bin/make
 /usr/bin/sudo /usr/bin/make install
 
