@@ -8,4 +8,4 @@ Raspberry Pi Configuration
 
 ## `npm --global install overcast`
 
-## `./recipes/mkpi [instance|cluster|all] [config]`
+## `./recipes/mkpi [instance|cluster|all] [config] --password raspberry`
