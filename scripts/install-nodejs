@@ -3,14 +3,24 @@
 set -e
 # set -x
 
+[ -f /etc/os-release ] && source /etc/os-release
+
 export DEBIAN_FRONTEND=noninteractive
 
 pushd /tmp/
 
-# http://node-arm.herokuapp.com/
-/usr/bin/curl --location --remote-name --silent 'http://node-arm.herokuapp.com/node_latest_armhf.deb'
-/usr/bin/sudo /usr/bin/dpkg --install node_latest_armhf.deb
+if [ "$ID" = "raspbian" ]; then
+  # http://node-arm.herokuapp.com/
+  /usr/bin/curl --location --remote-name --silent 'http://node-arm.herokuapp.com/node_latest_armhf.deb'
+  /usr/bin/sudo /usr/bin/dpkg --install node_latest_armhf.deb
+fi
+
+if [ "$ID" = "debian" ]; then
+  # https://github.com/nodesource/distributions#deb
+  /usr/bin/curl --silent --location 'https://deb.nodesource.com/setup' | /usr/bin/sudo bash -
+  /usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs nodejs-legacy build-essential
+fi
 
 popd
 
-/usr/bin/sudo /usr/local/bin/npm update --global
+/usr/bin/sudo `/usr/bin/which npm` update --global

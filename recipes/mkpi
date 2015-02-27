@@ -23,7 +23,7 @@ fi
 
 overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
 
-overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"htop zip collectd liboping0 $PACKAGES\"" "$@"
+overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"curl htop zip collectd liboping0 $PACKAGES\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/install-godaddy-c2-ca-root-cert-g2" "$@"
 
