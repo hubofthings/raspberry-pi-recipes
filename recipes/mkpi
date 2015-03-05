@@ -26,6 +26,14 @@ if [ "$BLUEZ" = "yes" ]; then
   PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
 fi
 
+if [ "$NODEJS" = "yes" ]; then
+  PACKAGES="build-essential $PACKAGES"
+fi
+
+if [ "$NODE_RED" = "yes" ]; then
+  PACKAGES="build-essential python-dev python-rpi.gpio libcap2-bin $PACKAGES"
+fi
+
 overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
 
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"curl htop zip collectd liboping0 $PACKAGES\"" "$@"
@@ -52,6 +60,10 @@ fi
 
 if [ "$NODEJS" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/install-nodejs" --env "NODEJS_VERSION=\"$NODEJS_VERSION\"" "$@"
+fi
+
+if [ "$NODE_RED" = "yes" ]; then
+  overcast run "$run_on" "$basedir/scripts/install-node-red" "$@"
 fi
 
 # This should remain last to ensure passwordless SSH is available throughout the install process

@@ -24,9 +24,9 @@ else
 
   # https://github.com/nodesource/distributions#deb
   /usr/bin/curl --silent --location 'https://deb.nodesource.com/setup' | /usr/bin/sudo bash -
-  /usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs nodejs-legacy build-essential
+  /usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs nodejs-legacy
 fi
 
 popd
 
-/usr/bin/sudo npm update npm --global
+/usr/bin/sudo npm update --global npm

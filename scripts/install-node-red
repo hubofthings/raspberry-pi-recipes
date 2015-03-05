@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+/usr/bin/sudo npm install --global node-red node-red-contrib-bean pm2
+
+# https://github.com/sandeepmistry/noble#running-on-linux
+/usr/bin/find "`npm prefix --global`/lib/node_modules" \
+  -path '*noble*Release/hci-ble' \
+  -print \
+  -exec /usr/bin/sudo /sbin/setcap cap_net_raw+eip '{}' \;
+
+pm2 start /usr/local/bin/node-red --node-args='--max-old-space-size=128' -- -v
+/usr/bin/sudo pm2 startup linux -u pi
