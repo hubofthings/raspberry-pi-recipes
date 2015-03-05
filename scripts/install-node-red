@@ -11,5 +11,5 @@ set -e
   -print \
   -exec /usr/bin/sudo /sbin/setcap cap_net_raw+eip '{}' \;
 
-pm2 start /usr/local/bin/node-red --node-args='--max-old-space-size=128' -- -v
+pm2 start "`/usr/bin/which node-red`" --node-args='--max-old-space-size=128' -- -v
 /usr/bin/sudo pm2 startup linux -u pi
