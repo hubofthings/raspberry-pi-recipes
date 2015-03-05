@@ -17,6 +17,11 @@ fi
 
 source "$config"
 
+if [ "$PUBLIC_KEY" = "yes" ]; then
+  overcast key push "$run_on" "$PUBLIC_KEY_FILE" --append "$@"
+  overcast instance update "$run_on" --ssh-key "$PRIVATE_KEY_FILE" --password '' "$@"
+fi
+
 if [ "$BLUEZ" = "yes" ]; then
   PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
 fi
@@ -39,10 +44,6 @@ fi
 
 if [ "$WIFI" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/configure-wifi" --env "WIFI_SSID=\"$WIFI_SSID\" WIFI_PASSWORD=\"$WIFI_PASSWORD\"" "$@"
-fi
-
-if [ "$PUBLIC_KEY" = "yes" ]; then
-  overcast key push "$run_on" "$PUBLIC_KEY_FILE" --append "$@"
 fi
 
 if [ "$BLUEZ" = "yes" ]; then
