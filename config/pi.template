@@ -34,5 +34,5 @@ BLUEZ_VERSION=5.28
 NODEJS=
 NODEJS_VERSION=0.10.36
 
-# if "yes", install Node-RED and NPM
+# if "yes", install Node-RED
 NODE_RED=
