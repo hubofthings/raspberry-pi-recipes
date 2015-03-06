@@ -6,6 +6,16 @@ Raspberry Pi Configuration
 - Set hostname
 - Enable SSH
 
-## `npm --global install overcast`
+## Install Overcast
 
-## `./recipes/mkpi [instance|cluster|all] [config] --password raspberry`
+    $ npm install --global overcast
+
+## Import your Pi into Overcast
+
+    $ overcast instance import my-pi 1.2.3.4 --user pi
+
+## Customize configuration
+
+    $ cp config/pi.template config/my-pi
+
+## `./recipes/mkpi my-pi config/my-pi --password raspberry`
