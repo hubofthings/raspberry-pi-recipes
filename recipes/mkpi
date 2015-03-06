@@ -22,6 +22,8 @@ if [ "$PUBLIC_KEY" = "yes" ]; then
   overcast instance update "$run_on" --ssh-key "$PRIVATE_KEY_FILE" --password '' "$@"
 fi
 
+overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
+
 if [ "$BLUEZ" = "yes" ]; then
   PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
 fi
@@ -33,10 +35,8 @@ fi
 if [ "$NODE_RED" = "yes" ]; then
   PACKAGES="build-essential python-dev libcap2-bin $PACKAGES"
   # TODO only install `python-rpi.gpio` if on Pi
-  # PACKAGES="python-rpi.gpio $PACKAGES"
+  PACKAGES="python-rpi.gpio $PACKAGES"
 fi
-
-overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
 
 overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"curl git htop zip collectd liboping0 $PACKAGES\"" "$@"
 
