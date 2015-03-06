@@ -7,14 +7,14 @@ This project contains [Overcast](http://andrewchilds.github.io/overcast/) script
 
 - Adding your public key to `authorized_keys`
 - Updating installed packages to the latest and greatest
-- Installing the [GoDaddy Class 2 Certification Authority Root Certificate - G2](https://certs.godaddy.com/repository) into the Java CA Certificates Store
+- Adding the [GoDaddy Class 2 Certification Authority Root Certificate - G2](https://certs.godaddy.com/repository) to your Java CA Certificates Store
 - Installing [Collectd](https://collectd.org/)
 - Configuring Collectd metrics to forward to [Librato](https://www.librato.com/)
 - Installing the [No-IP](http://www.noip.com/) Dynamic Update Client
 - Configuring [WPA Supplicant](http://w1.fi/wpa_supplicant/) to connect to your WiFi SSID (requires USB WiFi adapter)
 - Installing [BlueZ 5](http://www.bluez.org/) (requires USB Bluetooth adapter)
 - Installing [Node.js](http://nodejs.org/)
-- Installing [Node-RED](http://nodered.org/), with helpful nodes
+- Installing [Node-RED](http://nodered.org/) with basic nodes
 - Disabling password-based authentication for the `pi` user account
 
 Note that each of these tools is _**optional**_ and controlled by a flag (see [config/pi.template](https://github.com/garnold/raspberry-pi-recipes/blob/master/config/pi.template)).  
