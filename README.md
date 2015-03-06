@@ -18,4 +18,6 @@ Raspberry Pi Configuration
 
     $ cp config/pi.template config/my-pi
 
-## `./recipes/mkpi my-pi config/my-pi --password raspberry`
+## Make Pi
+
+    $ ./recipes/mkpi my-pi config/my-pi --password raspberry
