@@ -49,7 +49,7 @@ if [ "$LIBRATO" = "yes" ]; then
 fi
 
 if [ "$NOIP" = "yes" ]; then
-  overcast run "$run_on" "$basedir/scripts/configure-noip-client" --env "NOIP_USERNAME=\"$NOIP_USERNAME\" NOIP_PASSWORD=\"$NOIP_PASSWORD\"" "$@"
+  overcast run "$run_on" "$basedir/scripts/install-noip-client" --env "NOIP_USERNAME=\"$NOIP_USERNAME\" NOIP_PASSWORD=\"$NOIP_PASSWORD\"" "$@"
 fi
 
 if [ "$WIFI" = "yes" ]; then

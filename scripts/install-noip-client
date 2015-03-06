@@ -19,14 +19,18 @@ pushd noip-2.1.9*
 
 # /usr/bin/sudo /usr/bin/make install
 /usr/bin/sudo /bin/cp noip2 /usr/local/bin/
-/usr/bin/sudo /usr/local/bin/noip2 -C -Y -U 30 -u "$NOIP_USERNAME" -p "$NOIP_PASSWORD"
-/usr/bin/sudo /usr/local/bin/noip2 -S
+
+echo '######################################################################################'
+echo 'To configure the No-IP Dynamic Update Client, SSH to this instance and run:'
+echo "/usr/bin/sudo /usr/local/bin/noip2 -C -F -U 30 -u '$NOIP_USERNAME' -p '$NOIP_PASSWORD'"
+echo '/usr/bin/sudo /usr/local/bin/noip2'
+echo '######################################################################################'
 
 popd
 
 popd
 
-/usr/bin/sudo /usr/bin/tee /etc/cron.d/noip2 <<\EOF
+/usr/bin/sudo /usr/bin/tee /etc/cron.d/no-ip2 <<\EOF
 # m h dom mon dow user command
-@reboot root /usr/local/bin/noip2
+@reboot root /usr/local/bin/noip2 -M
 EOF
