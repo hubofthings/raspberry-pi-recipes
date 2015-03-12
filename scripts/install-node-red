@@ -14,5 +14,8 @@ set -e
   -print \
   -exec /usr/bin/sudo /sbin/setcap cap_net_raw+eip '{}' \;
 
+# Immediately start node-red
 pm2 start "`/usr/bin/which node-red`" --node-args='--max-old-space-size=128' -- -v
+
+# Register node-red to be started at startup
 /usr/bin/sudo pm2 startup linux -u "$USER"
