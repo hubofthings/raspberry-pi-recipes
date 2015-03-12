@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+
+if [ -z "$BLUEPY_VERSION" ]; then
+  BLUEPY_VERSION="c7ac232"
+fi
+
+pushd /usr/local/src
+
+BLUEPY_VERSION="c7ac232"
+/usr/bin/sudo /usr/bin/curl --location --output bluepy.tar.gz --silent https://github.com/IanHarvey/bluepy/tarball/${BLUEPY_VERSION}
+/usr/bin/sudo /bin/tar xf bluepy.tar.gz
+
+pushd "IanHarvey-bluepy-${BLUEPY_VERSION}/bluepy"
+
+/usr/bin/sudo /usr/bin/make
+/usr/bin/sudo /bin/cp bluepy-helper btle.py sensortag.py /usr/local/lib/python2.7/site-packages/
+
+# Append site-packages to PYTHONPATH globally
+if /bin/grep --quiet '^PYTHONPATH' /etc/environment; then
+    /usr/bin/sudo /bin/sed -i 's|^PYTHONPATH.*|PYTHONPATH="/usr/local/lib/python2.7/site-packages/"|' /etc/environment
+else
+    /bin/echo 'PYTHONPATH="/usr/local/lib/python2.7/site-packages/"' | /usr/bin/sudo tee --append /etc/environment > /dev/null
+fi
+
+popd
+
+popd

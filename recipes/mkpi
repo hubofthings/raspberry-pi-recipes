@@ -28,6 +28,10 @@ if [ "$BLUEZ" = "yes" ]; then
   PACKAGES="libusb-dev libdbus-1-dev libglib2.0-dev automake libudev-dev libical-dev libreadline-dev $PACKAGES"
 fi
 
+if [ "$BLUEPY" = "yes" ]; then
+  PACKAGES="libglib2.0-dev libdbus-1-dev $PACKAGES"
+fi
+
 if [ "$NODEJS" = "yes" ]; then
   PACKAGES="build-essential $PACKAGES"
 fi
@@ -58,6 +62,10 @@ fi
 
 if [ "$BLUEZ" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/install-bluez-5" --env "BLUEZ_VERSION=\"$BLUEZ_VERSION\"" "$@"
+fi
+
+if [ "$BLUEPY" = "yes" ]; then
+  overcast run "$run_on" "$basedir/scripts/install-bluepy" "$@"
 fi
 
 if [ "$NODEJS" = "yes" ]; then
