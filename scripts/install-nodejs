@@ -8,13 +8,11 @@ if [ -z "$NODEJS_VERSION" ]; then
   exit 1
 fi
 
-[ -f /etc/os-release ] && source /etc/os-release
-
 export DEBIAN_FRONTEND=noninteractive
 
 pushd /tmp/
 
-if [ "$ID" = 'raspbian' ]; then
+if [ "`uname -m`" = 'armv6l' ]; then
   # http://node-arm.herokuapp.com/
   /usr/bin/curl --location --remote-name --silent "http://node-arm.herokuapp.com/node_${NODEJS_VERSION}_armhf.deb"
   /usr/bin/sudo /usr/bin/dpkg --install "node_${NODEJS_VERSION}_armhf.deb"
