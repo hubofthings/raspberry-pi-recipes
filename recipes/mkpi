@@ -65,7 +65,7 @@ if [ "$BLUEZ" = "yes" ]; then
 fi
 
 if [ "$BLUEPY" = "yes" ]; then
-  overcast run "$run_on" "$basedir/scripts/install-bluepy" "$@"
+  overcast run "$run_on" "$basedir/scripts/install-bluepy" --env "BLUEPY_VERSION=\"$BLUEPY_VERSION\"" "$@"
 fi
 
 if [ "$NODEJS" = "yes" ]; then
