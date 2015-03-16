@@ -18,11 +18,9 @@ if [ "`uname -m`" = 'armv6l' ]; then
   /usr/bin/sudo /usr/bin/dpkg --install "node_${NODEJS_VERSION}_armhf.deb"
 else
   # TODO respect $NODEJS_VERSION
-  [ "$NODEJS_VERSION" = 'latest' ] || exit 1
-
   # https://github.com/nodesource/distributions#deb
   /usr/bin/curl --silent --location 'https://deb.nodesource.com/setup' | /usr/bin/sudo bash -
-  /usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs nodejs-legacy
+  /usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install nodejs
 fi
 
 popd
