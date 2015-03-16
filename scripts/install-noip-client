@@ -23,7 +23,7 @@ pushd noip-2.1.9*
 echo '######################################################################################'
 echo 'To configure the No-IP Dynamic Update Client, SSH to this instance and run:'
 echo "/usr/bin/sudo /usr/local/bin/noip2 -C -F -U 30 -u '$NOIP_USERNAME' -p '$NOIP_PASSWORD'"
-echo '/usr/bin/sudo /usr/local/bin/noip2'
+echo '/usr/bin/sudo /usr/local/bin/noip2 -M'
 echo '######################################################################################'
 
 popd
