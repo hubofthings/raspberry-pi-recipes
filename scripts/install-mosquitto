@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+pushd /tmp/
+
+/usr/bin/curl --location --remote-name --silent 'http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key'
+/usr/bin/sudo /usr/bin/apt-key add mosquitto-repo.gpg.key
+
+popd
+
+pushd /etc/apt/sources.list.d/
+
+/usr/bin/sudo /usr/bin/curl --location --remote-name --silent 'http://repo.mosquitto.org/debian/mosquitto-wheezy.list'
+
+popd
+
+export DEBIAN_FRONTEND=noninteractive
+/usr/bin/sudo /usr/bin/apt-get --quiet update
+/usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install mosquitto mosquitto-clients

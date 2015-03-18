@@ -76,6 +76,10 @@ if [ "$NODE_RED" = "yes" ]; then
   overcast run "$run_on" "$basedir/scripts/install-node-red" "$@"
 fi
 
+if [ "$MOSQUITTO" = "yes" ]; then
+  overcast run "$run_on" "$basedir/scripts/install-mosquitto" "$@"
+fi
+
 # This should remain last to ensure passwordless SSH is available throughout the install process
 if [ "$LOCK_PI" = "yes" ]; then
   overcast run "$run_on" 'sudo usermod --lock $USER' "$@"
