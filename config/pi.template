@@ -8,12 +8,12 @@ PUBLIC_KEY=
 PUBLIC_KEY_FILE=
 PRIVATE_KEY_FILE=
 
-# if "yes", configure Collectd to push metrics to Librato
+# if "yes", configure Collectd (https://collectd.org/) to push metrics to Librato (https://www.librato.com/)
 LIBRATO=
 LIBRATO_USERNAME=
 LIBRATO_PASSWORD=
 
-# if "yes", install and configure NoIP Dynamic DNS Update Client
+# if "yes", install and configure NoIP Dynamic DNS Update Client (https://www.noip.com/)
 NOIP=
 NOIP_USERNAME=
 NOIP_PASSWORD=
@@ -26,19 +26,19 @@ WIFI_PASSWORD=
 # if "yes", disable password-based logins to `pi` user
 LOCK_PI=
 
-# if "yes", install BlueZ
+# if "yes", install BlueZ (http://www.bluez.org/)
 BLUEZ=
 BLUEZ_VERSION=5.28
 
-# if "yes", install Bluepy
+# if "yes", install Bluepy (https://github.com/IanHarvey/bluepy)
 BLUEPY=
 BLUEPY_VERSION=c7ac232
 
-# if "yes", install Node.js and NPM
+# if "yes", install Node.js (https://nodejs.org/) and NPM (https://www.npmjs.com/)
 NODEJS=
 NODEJS_VERSION=0.10.36
 
-# if "yes", install Node-RED
+# if "yes", install Node-RED (http://nodered.org/)
 NODE_RED=
 
 # if "yes", install Mosquitto (http://mosquitto.org/)
