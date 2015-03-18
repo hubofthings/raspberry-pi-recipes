@@ -16,6 +16,7 @@ This project contains [Overcast](http://andrewchilds.github.io/overcast/) script
 - Install [Bluepy](https://github.com/IanHarvey/bluepy) (requires USB Bluetooth adapter)
 - Install [Node.js](http://nodejs.org/)
 - Install [Node-RED](http://nodered.org/) with basic nodes
+- Install [Mosquitto](http://mosquitto.org/)
 - Disable password-based authentication for the `pi` user account
 
 Note that each of these tools is _**optional**_ and controlled by a flag (see [config/pi.template](https://github.com/garnold/raspberry-pi-recipes/blob/master/config/pi.template)).  
