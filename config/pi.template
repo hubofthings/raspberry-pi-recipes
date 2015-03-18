@@ -40,3 +40,6 @@ NODEJS_VERSION=0.10.36
 
 # if "yes", install Node-RED
 NODE_RED=
+
+# if "yes", install Mosquitto (http://mosquitto.org/)
+MOSQUITTO=
