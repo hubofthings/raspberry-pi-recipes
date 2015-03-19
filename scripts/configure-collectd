@@ -23,10 +23,20 @@ popd
 pushd /etc/collectd.d/
 
 /usr/bin/sudo /usr/bin/tee ping.conf <<\EOF
+# https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ping
 LoadPlugin ping
 <Plugin ping>
     Host "10.0.1.1"
     Host "google.com"
+</Plugin>
+EOF
+
+/usr/bin/sudo /usr/bin/tee network-listener.conf <<\EOF
+# https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network
+LoadPlugin network
+<Plugin network>
+    Listen "localhost"
+    Forward true
 </Plugin>
 EOF
 
