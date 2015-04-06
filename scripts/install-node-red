@@ -6,7 +6,9 @@ set -e
 /usr/bin/sudo npm install --global node-red pm2 \
   node-red-contrib-bean \
   node-red-node-sensortag \
-  node-red-contrib-sparkcore
+  node-red-contrib-sparkcore \
+  node-red-contrib-collectd \
+  node-red-contrib-librato
 
 # https://github.com/sandeepmistry/noble#running-on-linux
 /usr/bin/find "`npm prefix --global`/lib/node_modules" \
