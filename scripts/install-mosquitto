@@ -12,7 +12,8 @@ popd
 
 pushd /etc/apt/sources.list.d/
 
-/usr/bin/sudo /usr/bin/curl --location --remote-name --silent 'http://repo.mosquitto.org/debian/mosquitto-wheezy.list'
+release="`/usr/bin/lsb_release --codename --short`"
+/usr/bin/sudo /usr/bin/curl --location --remote-name --silent "http://repo.mosquitto.org/debian/mosquitto-$release.list"
 
 popd
 

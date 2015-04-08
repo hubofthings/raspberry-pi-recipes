@@ -42,7 +42,7 @@ if [ "$NODE_RED" = "yes" ]; then
   PACKAGES="python-rpi.gpio $PACKAGES"
 fi
 
-overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"curl git htop zip collectd liboping0 $PACKAGES\"" "$@"
+overcast run "$run_on" "$basedir/scripts/apt-get-install" --env "PACKAGES=\"curl git htop zip collectd liboping0 lsb-release $PACKAGES\"" "$@"
 
 overcast run "$run_on" "$basedir/scripts/install-godaddy-c2-ca-root-cert-g2" "$@"
 
