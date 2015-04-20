@@ -31,6 +31,15 @@ LoadPlugin ping
 </Plugin>
 EOF
 
+/usr/bin/sudo /usr/bin/tee network-listener.conf <<\EOF
+# https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network
+LoadPlugin network
+<Plugin network>
+    Listen "localhost"
+    Forward true
+</Plugin>
+EOF
+
 /usr/bin/sudo /usr/bin/tee unixsock.conf <<\EOF
 # https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_unixsock
 LoadPlugin unixsock
