@@ -11,6 +11,7 @@ fi
 
 pushd /usr/local/src
 
+# TODO add support for "latest" using `git clone` (https://github.com/IanHarvey/bluepy#installation)
 /usr/bin/sudo /usr/bin/curl --location --output bluepy.tar.gz --silent https://github.com/IanHarvey/bluepy/tarball/${BLUEPY_VERSION}
 /usr/bin/sudo /bin/tar xf bluepy.tar.gz
 

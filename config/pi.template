@@ -28,11 +28,11 @@ LOCK_PI=
 
 # if "yes", install BlueZ (http://www.bluez.org/)
 BLUEZ=
-BLUEZ_VERSION=5.28
+BLUEZ_VERSION=5.30
 
 # if "yes", install Bluepy (https://github.com/IanHarvey/bluepy)
 BLUEPY=
-BLUEPY_VERSION=c7ac232
+BLUEPY_VERSION=b9d3fbada7df62987987c1afdb3cff7be84d0691
 
 # if "yes", install Node.js (https://nodejs.org/) and NPM (https://www.npmjs.com/)
 NODEJS=
