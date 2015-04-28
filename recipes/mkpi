@@ -19,7 +19,9 @@ source "$config"
 
 if [ "$PUBLIC_KEY" = "yes" ]; then
   overcast key push "$run_on" "$PUBLIC_KEY_FILE" --append "$@"
-  overcast instance update "$run_on" --ssh-key "$PRIVATE_KEY_FILE" --password '' "$@"
+
+  # Not propagating script args (`"$@"`) to ensure `--password ''` option is not clobbered
+  overcast instance update "$run_on" --ssh-key "$PRIVATE_KEY_FILE" --password ''
 fi
 
 overcast run "$run_on" "$basedir/scripts/apt-get-dist-upgrade" "$@"
