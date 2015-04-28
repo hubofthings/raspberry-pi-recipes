@@ -33,7 +33,7 @@ Also note that 99.999% of the recipe is _not_ Pi-specific, and as such it can be
 - Set hostname
 - Enable SSH -->
 
-#### _An [issue has been reported](https://github.com/hubofthings/raspberry-pi-recipes/issues/9) when using these scripts on standalone Raspbian image-based installs.  Currently only [NOOBS-based Raspbian installs](https://www.raspberrypi.org/downloads/) are supported._
+<!-- #### _An [issue has been reported](https://github.com/hubofthings/raspberry-pi-recipes/issues/9) when using these scripts on standalone Raspbian image-based installs.  Currently only [NOOBS-based Raspbian installs](https://www.raspberrypi.org/downloads/) are supported._ -->
 
 ## Install Overcast on your local machine
 
