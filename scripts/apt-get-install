@@ -4,10 +4,17 @@ set -e
 # set -x
 
 if [ -z "$PACKAGES" ]; then
-  echo "Usage: scripts/apt-get-install --env \"PACKAGES=[package-name...]\""
+  echo "Usage: scripts/apt-get-install --env \"PACKAGES=[package-name...] [OPTIONAL_PACKAGES=[package-name...]]\""
   exit 1
 fi
 
 export DEBIAN_FRONTEND=noninteractive
 /usr/bin/sudo /usr/bin/apt-get --quiet update
+
+if [ -n "$OPTIONAL_PACKAGES" ]; then
+  for package in "$OPTIONAL_PACKAGES"; do
+    /usr/bin/dpkg --print-avail $package &> /dev/null && PACKAGES="$package $PACKAGES"
+  done
+fi
+
 /usr/bin/sudo /usr/bin/apt-get --quiet --yes --no-install-recommends install $PACKAGES
