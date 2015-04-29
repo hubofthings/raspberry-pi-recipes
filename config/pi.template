@@ -32,7 +32,7 @@ BLUEZ_VERSION=5.30
 
 # if "yes", install Bluepy (https://github.com/IanHarvey/bluepy)
 BLUEPY=
-BLUEPY_VERSION=b9d3fbada7df62987987c1afdb3cff7be84d0691
+BLUEPY_VERSION=b9d3fba
 
 # if "yes", install Node.js (https://nodejs.org/) and NPM (https://www.npmjs.com/)
 NODEJS=
