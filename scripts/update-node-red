@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+# set -x
+
+/usr/bin/sudo npm update --global node-red pm2 \
+  node-red-contrib-bean \
+  node-red-node-sensortag \
+  node-red-contrib-sparkcore \
+  node-red-contrib-collectd \
+  node-red-contrib-librato
+
+# https://github.com/sandeepmistry/noble#running-on-linux
+/usr/bin/find "`npm prefix --global`/lib/node_modules" \
+  -path '*noble*Release/hci-ble' \
+  -print \
+  -exec /usr/bin/sudo /sbin/setcap cap_net_raw+eip '{}' \;
+
+pm2 updatePM2
+pm2 restart node-red
