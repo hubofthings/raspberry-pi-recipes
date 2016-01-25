@@ -3,6 +3,8 @@
 set -e
 # set -x
 
+default_gateway="`/sbin/ip route | awk '/default/ { print $3 }'`"
+
 pushd /etc/collectd/
 
 [ -f collectd.conf.DEFAULT ] || /usr/bin/sudo /bin/cp collectd.conf collectd.conf.DEFAULT
@@ -22,11 +24,11 @@ popd
 
 pushd /etc/collectd.d/
 
-/usr/bin/sudo /usr/bin/tee ping.conf <<\EOF
+/usr/bin/sudo /usr/bin/tee ping.conf <<EOF
 # https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ping
 LoadPlugin ping
 <Plugin ping>
-    Host "10.0.1.1"
+    Host "$default_gateway"
     Host "google.com"
 </Plugin>
 EOF
